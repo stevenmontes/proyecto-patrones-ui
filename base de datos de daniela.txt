@@ -1,4 +1,109 @@
-
+USE [master]
+GO
+/****** Object:  Database [bd_sistema_patrones_v1]    Script Date: 13/8/2018 22:43:03 ******/
+CREATE DATABASE [bd_sistema_patrones_v1]
+ CONTAINMENT = NONE
+ ON  PRIMARY 
+( NAME = N'bd_sistema_patrones_v1', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL14.MSSQLSERVER\MSSQL\DATA\bd_sistema_patrones_v1.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
+ LOG ON 
+( NAME = N'bd_sistema_patrones_v1_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL14.MSSQLSERVER\MSSQL\DATA\bd_sistema_patrones_v1_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
+GO
+ALTER DATABASE [bd_sistema_patrones_v1] SET COMPATIBILITY_LEVEL = 140
+GO
+IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
+begin
+EXEC [bd_sistema_patrones_v1].[dbo].[sp_fulltext_database] @action = 'enable'
+end
+GO
+ALTER DATABASE [bd_sistema_patrones_v1] SET ANSI_NULL_DEFAULT OFF 
+GO
+ALTER DATABASE [bd_sistema_patrones_v1] SET ANSI_NULLS OFF 
+GO
+ALTER DATABASE [bd_sistema_patrones_v1] SET ANSI_PADDING OFF 
+GO
+ALTER DATABASE [bd_sistema_patrones_v1] SET ANSI_WARNINGS OFF 
+GO
+ALTER DATABASE [bd_sistema_patrones_v1] SET ARITHABORT OFF 
+GO
+ALTER DATABASE [bd_sistema_patrones_v1] SET AUTO_CLOSE OFF 
+GO
+ALTER DATABASE [bd_sistema_patrones_v1] SET AUTO_SHRINK OFF 
+GO
+ALTER DATABASE [bd_sistema_patrones_v1] SET AUTO_UPDATE_STATISTICS ON 
+GO
+ALTER DATABASE [bd_sistema_patrones_v1] SET CURSOR_CLOSE_ON_COMMIT OFF 
+GO
+ALTER DATABASE [bd_sistema_patrones_v1] SET CURSOR_DEFAULT  GLOBAL 
+GO
+ALTER DATABASE [bd_sistema_patrones_v1] SET CONCAT_NULL_YIELDS_NULL OFF 
+GO
+ALTER DATABASE [bd_sistema_patrones_v1] SET NUMERIC_ROUNDABORT OFF 
+GO
+ALTER DATABASE [bd_sistema_patrones_v1] SET QUOTED_IDENTIFIER OFF 
+GO
+ALTER DATABASE [bd_sistema_patrones_v1] SET RECURSIVE_TRIGGERS OFF 
+GO
+ALTER DATABASE [bd_sistema_patrones_v1] SET  DISABLE_BROKER 
+GO
+ALTER DATABASE [bd_sistema_patrones_v1] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
+GO
+ALTER DATABASE [bd_sistema_patrones_v1] SET DATE_CORRELATION_OPTIMIZATION OFF 
+GO
+ALTER DATABASE [bd_sistema_patrones_v1] SET TRUSTWORTHY OFF 
+GO
+ALTER DATABASE [bd_sistema_patrones_v1] SET ALLOW_SNAPSHOT_ISOLATION OFF 
+GO
+ALTER DATABASE [bd_sistema_patrones_v1] SET PARAMETERIZATION SIMPLE 
+GO
+ALTER DATABASE [bd_sistema_patrones_v1] SET READ_COMMITTED_SNAPSHOT OFF 
+GO
+ALTER DATABASE [bd_sistema_patrones_v1] SET HONOR_BROKER_PRIORITY OFF 
+GO
+ALTER DATABASE [bd_sistema_patrones_v1] SET RECOVERY FULL 
+GO
+ALTER DATABASE [bd_sistema_patrones_v1] SET  MULTI_USER 
+GO
+ALTER DATABASE [bd_sistema_patrones_v1] SET PAGE_VERIFY CHECKSUM  
+GO
+ALTER DATABASE [bd_sistema_patrones_v1] SET DB_CHAINING OFF 
+GO
+ALTER DATABASE [bd_sistema_patrones_v1] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
+GO
+ALTER DATABASE [bd_sistema_patrones_v1] SET TARGET_RECOVERY_TIME = 60 SECONDS 
+GO
+ALTER DATABASE [bd_sistema_patrones_v1] SET DELAYED_DURABILITY = DISABLED 
+GO
+EXEC sys.sp_db_vardecimal_storage_format N'bd_sistema_patrones_v1', N'ON'
+GO
+ALTER DATABASE [bd_sistema_patrones_v1] SET QUERY_STORE = OFF
+GO
+USE [bd_sistema_patrones_v1]
+GO
+ALTER DATABASE SCOPED CONFIGURATION SET IDENTITY_CACHE = ON;
+GO
+ALTER DATABASE SCOPED CONFIGURATION SET LEGACY_CARDINALITY_ESTIMATION = OFF;
+GO
+ALTER DATABASE SCOPED CONFIGURATION FOR SECONDARY SET LEGACY_CARDINALITY_ESTIMATION = PRIMARY;
+GO
+ALTER DATABASE SCOPED CONFIGURATION SET MAXDOP = 0;
+GO
+ALTER DATABASE SCOPED CONFIGURATION FOR SECONDARY SET MAXDOP = PRIMARY;
+GO
+ALTER DATABASE SCOPED CONFIGURATION SET PARAMETER_SNIFFING = ON;
+GO
+ALTER DATABASE SCOPED CONFIGURATION FOR SECONDARY SET PARAMETER_SNIFFING = PRIMARY;
+GO
+ALTER DATABASE SCOPED CONFIGURATION SET QUERY_OPTIMIZER_HOTFIXES = OFF;
+GO
+ALTER DATABASE SCOPED CONFIGURATION FOR SECONDARY SET QUERY_OPTIMIZER_HOTFIXES = PRIMARY;
+GO
+USE [bd_sistema_patrones_v1]
+GO
+/****** Object:  Table [dbo].[tarea_funcional]    Script Date: 13/8/2018 22:43:03 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
 CREATE TABLE [dbo].[tarea_funcional](
 	[id] [int] IDENTITY(1,1) NOT NULL,
 	[codigo] [varchar](50) NOT NULL,
@@ -15,7 +120,11 @@ CREATE TABLE [dbo].[tarea_funcional](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-
+/****** Object:  Table [dbo].[templeado]    Script Date: 13/8/2018 22:43:04 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
 CREATE TABLE [dbo].[templeado](
 	[id] [int] IDENTITY(1,1) NOT NULL,
 	[cedula] [varchar](20) NOT NULL,
@@ -34,16 +143,11 @@ CREATE TABLE [dbo].[templeado](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-
-CREATE TABLE [dbo].[tfirma](
-	[id] [int] IDENTITY(1,1) NOT NULL,
-	[idEmpleado] [int] NOT NULL,
-	[firma] [varchar](300) NOT NULL,
-	[llave] [varchar](50) NOT NULL,
-	[nombre] [varchar](50) NOT NULL
-) ON [PRIMARY]
+/****** Object:  Table [dbo].[tpaso]    Script Date: 13/8/2018 22:43:04 ******/
+SET ANSI_NULLS ON
 GO
-
+SET QUOTED_IDENTIFIER ON
+GO
 CREATE TABLE [dbo].[tpaso](
 	[id] [int] IDENTITY(1,1) NOT NULL,
 	[descripcion] [varchar](300) NOT NULL,
@@ -62,7 +166,11 @@ CREATE TABLE [dbo].[tpaso](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-
+/****** Object:  Table [dbo].[tpasos_x_empleados]    Script Date: 13/8/2018 22:43:04 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
 CREATE TABLE [dbo].[tpasos_x_empleados](
 	[id] [int] IDENTITY(1,1) NOT NULL,
 	[fecha_inicio] [date] NOT NULL,
@@ -76,7 +184,11 @@ CREATE TABLE [dbo].[tpasos_x_empleados](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-
+/****** Object:  Table [dbo].[tproceso]    Script Date: 13/8/2018 22:43:04 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
 CREATE TABLE [dbo].[tproceso](
 	[id] [int] IDENTITY(1,1) NOT NULL,
 	[codigo] [varchar](50) NOT NULL,
@@ -85,7 +197,6 @@ CREATE TABLE [dbo].[tproceso](
 	[fecha_inicio] [date] NULL,
 	[fecha_fin] [date] NULL,
 	[estado] [varchar](15) NOT NULL,
-	[firma] [varchar](100) NULL,
  CONSTRAINT [PK_proceso] PRIMARY KEY CLUSTERED 
 (
 	[id] ASC
@@ -96,7 +207,11 @@ CREATE TABLE [dbo].[tproceso](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-
+/****** Object:  Table [dbo].[ttarea]    Script Date: 13/8/2018 22:43:04 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
 CREATE TABLE [dbo].[ttarea](
 	[id] [int] IDENTITY(1,1) NOT NULL,
 	[codigo] [varchar](50) NOT NULL,
@@ -149,9 +264,6 @@ REFERENCES [dbo].[tarea_funcional] ([id])
 GO
 ALTER TABLE [dbo].[templeado] CHECK CONSTRAINT [FK_area_empleado]
 GO
-ALTER TABLE [dbo].[tfirma]  WITH CHECK ADD FOREIGN KEY([idEmpleado])
-REFERENCES [dbo].[templeado] ([id])
-GO
 ALTER TABLE [dbo].[tpaso]  WITH CHECK ADD  CONSTRAINT [FK_empleado_paso] FOREIGN KEY([id_empleado])
 REFERENCES [dbo].[templeado] ([id])
 GO
@@ -193,11 +305,12 @@ GO
 ALTER TABLE [dbo].[ttarea]  WITH CHECK ADD  CONSTRAINT [CHK_estado_tarea] CHECK  (([estado]='Completado' OR [estado]='En proceso' OR [estado]='Inactivo'))
 GO
 ALTER TABLE [dbo].[ttarea] CHECK CONSTRAINT [CHK_estado_tarea]
-
-create procedure [dbo].[listarFirmas]
-as
-select * from tfirma
-
+GO
+/****** Object:  StoredProcedure [dbo].[pa_iniciar_sesion]    Script Date: 13/8/2018 22:43:04 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
 CREATE PROCEDURE [dbo].[pa_iniciar_sesion] 
 @usuario VARCHAR(25),
 @clave VARCHAR(25)
@@ -213,26 +326,43 @@ AS
 	BEGIN CATCH
 	END CATCH
 GO
-
+/****** Object:  StoredProcedure [dbo].[pa_listar_areas]    Script Date: 13/8/2018 22:43:04 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
 	CREATE PROCEDURE [dbo].[pa_listar_areas]
 	AS
 	SELECT * 
 	FROM tarea_funcional
-
+GO
+/****** Object:  StoredProcedure [dbo].[pa_listar_areas_funcionales]    Script Date: 13/8/2018 22:43:04 ******/
+SET ANSI_NULLS ON
+GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE PROCEDURE [dbo].[pa_listar_areas_funcionales]
 	AS
 	SELECT codigo, nombre, descripcion,estado
 	FROM tarea_funcional
-
+GO
+/****** Object:  StoredProcedure [dbo].[pa_listar_empleados]    Script Date: 13/8/2018 22:43:04 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
 	CREATE PROCEDURE [dbo].[pa_listar_empleados]
 	AS
 	SELECT e.cedula, e.primer_nombre, e.segundo_nombre, e.primer_apellido, e.segundo_apellido, e.correo, e.usuario, e.clave, e.rol, a.nombre
 	FROM templeado AS e
 	INNER JOIN tarea_funcional AS a
 	ON e.id_area_funcional = a.id
-
+GO
+/****** Object:  StoredProcedure [dbo].[pa_listar_pasos]    Script Date: 13/8/2018 22:43:04 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
 CREATE PROCEDURE [dbo].[pa_listar_pasos]
 	@codigo_tarea VARCHAR(50)
 	AS
@@ -247,13 +377,21 @@ CREATE PROCEDURE [dbo].[pa_listar_pasos]
 	AS p 
 	WHERE p.id_tarea = @id_tarea
 GO
-
+/****** Object:  StoredProcedure [dbo].[pa_listar_procesos]    Script Date: 13/8/2018 22:43:04 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
 CREATE PROCEDURE [dbo].[pa_listar_procesos]
 AS
 SELECT codigo, nombre, fecha_inicio, fecha_fin, descripcion, estado
 FROM tproceso
 GO
-
+/****** Object:  StoredProcedure [dbo].[pa_listar_tareas]    Script Date: 13/8/2018 22:43:04 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
 CREATE PROCEDURE [dbo].[pa_listar_tareas]
 	@codigo_proceso VARCHAR(50)
 	AS
@@ -268,18 +406,32 @@ CREATE PROCEDURE [dbo].[pa_listar_tareas]
 	INNER JOIN tarea_funcional AS a
 	ON t.id_area_funcional = a.id
 	WHERE t.id_proceso = @id_proceso
-
+GO
+/****** Object:  StoredProcedure [dbo].[pa_listarProcesosActivos]    Script Date: 13/8/2018 22:43:04 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
   create procedure [dbo].[pa_listarProcesosActivos]
 	as
 	select * from tproceso where estado='En proceso'
 	
 	
 GO
-
+/****** Object:  StoredProcedure [dbo].[pa_listarProcesosCompleto]    Script Date: 13/8/2018 22:43:04 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
 	create procedure [dbo].[pa_listarProcesosCompleto]
 	as
 	select * from tproceso where estado='Completado'
-
+GO
+/****** Object:  StoredProcedure [dbo].[pa_modificar_departamento]    Script Date: 13/8/2018 22:43:04 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
 CREATE PROCEDURE [dbo].[pa_modificar_departamento]
 	@nombre VARCHAR(50),
 	@codigo VARCHAR(50),
@@ -290,7 +442,11 @@ CREATE PROCEDURE [dbo].[pa_modificar_departamento]
 				descripcion = @descripcion
 		WHERE codigo = @codigo
 GO
-
+/****** Object:  StoredProcedure [dbo].[pa_modificar_empleado]    Script Date: 13/8/2018 22:43:04 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
 CREATE PROCEDURE [dbo].[pa_modificar_empleado]
 	@cedula VARCHAR(20),
 	@nom1 VARCHAR(50),
@@ -321,7 +477,11 @@ CREATE PROCEDURE [dbo].[pa_modificar_empleado]
 				id_area_funcional = @id_area
 		WHERE cedula = @cedula
 GO
-
+/****** Object:  StoredProcedure [dbo].[pa_modificar_paso]    Script Date: 13/8/2018 22:43:04 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
 CREATE PROCEDURE [dbo].[pa_modificar_paso]
 	@codigo VARCHAR(50),
 	@nombre VARCHAR(50),
@@ -332,7 +492,11 @@ CREATE PROCEDURE [dbo].[pa_modificar_paso]
 				descripcion = @descripcion
 		WHERE codigo = @codigo
 GO
-
+/****** Object:  StoredProcedure [dbo].[pa_modificar_paso_completo]    Script Date: 13/8/2018 22:43:04 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
  CREATE PROCEDURE [dbo].[pa_modificar_paso_completo]
 	@codigo_paso VARCHAR(50),
 	@estado VARCHAR(15),
@@ -355,7 +519,11 @@ GO
 			id_empleado = @id_encargado
 	WHERE @codigo_paso = codigo
 GO
-
+/****** Object:  StoredProcedure [dbo].[pa_modificar_proceso]    Script Date: 13/8/2018 22:43:04 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
 CREATE PROCEDURE [dbo].[pa_modificar_proceso]
 	@codigo VARCHAR(50),
 	@nombre VARCHAR(50),
@@ -366,7 +534,11 @@ CREATE PROCEDURE [dbo].[pa_modificar_proceso]
 			descripcion = @descripcion
 	WHERE codigo = @codigo
 GO
-
+/****** Object:  StoredProcedure [dbo].[pa_modificar_tarea]    Script Date: 13/8/2018 22:43:04 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
 CREATE PROCEDURE [dbo].[pa_modificar_tarea]
 	@codigo VARCHAR(50),
 	@nombre VARCHAR(50),
@@ -385,27 +557,20 @@ CREATE PROCEDURE [dbo].[pa_modificar_tarea]
 			id_area_funcional = @id_area_funcional
 	WHERE codigo = @codigo
 GO
-
-CREATE procedure [dbo].[pa_modificarEstadoTramite]
-@codigo varchar(50),
-@firma varchar(100)
-as
-declare @id int
-select @id=id
-from tproceso
-where firma=@firma
-
-update tproceso
-set estado='En proceso',
-firma=@id
-where codigo=@codigo
+/****** Object:  StoredProcedure [dbo].[pa_obtener_cedulas_empleados]    Script Date: 13/8/2018 22:43:04 ******/
+SET ANSI_NULLS ON
 GO
-
+SET QUOTED_IDENTIFIER ON
+GO
 CREATE PROCEDURE [dbo].[pa_obtener_cedulas_empleados]
 AS
 SELECT cedula FROM templeado
 GO
-
+/****** Object:  StoredProcedure [dbo].[pa_obtener_codigo_tarea_por_area]    Script Date: 13/8/2018 22:43:04 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
 CREATE PROCEDURE [dbo].[pa_obtener_codigo_tarea_por_area]
 	@id_area_funcional INT
 	AS
@@ -413,27 +578,48 @@ CREATE PROCEDURE [dbo].[pa_obtener_codigo_tarea_por_area]
 	FROM ttarea
 	WHERE id_area_funcional = @id_area_funcional
 GO
+/****** Object:  StoredProcedure [dbo].[pa_obtener_codigos_area_funcional]    Script Date: 13/8/2018 22:43:04 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
 
 CREATE PROCEDURE [dbo].[pa_obtener_codigos_area_funcional]
 AS
 SELECT codigo FROM tarea_funcional
 GO
-
+/****** Object:  StoredProcedure [dbo].[pa_obtener_codigos_pasos]    Script Date: 13/8/2018 22:43:04 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
 CREATE PROCEDURE [dbo].[pa_obtener_codigos_pasos]
 AS
 SELECT codigo FROM tpaso
 GO
-
+/****** Object:  StoredProcedure [dbo].[pa_obtener_codigos_procesos]    Script Date: 13/8/2018 22:43:04 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
 CREATE PROCEDURE [dbo].[pa_obtener_codigos_procesos]
 AS
 SELECT codigo FROM tproceso
 GO
-
+/****** Object:  StoredProcedure [dbo].[pa_obtener_codigos_tareas]    Script Date: 13/8/2018 22:43:04 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
 CREATE PROCEDURE [dbo].[pa_obtener_codigos_tareas]
 AS
 SELECT codigo FROM ttarea
 GO
-
+/****** Object:  StoredProcedure [dbo].[pa_obtener_id_tarea]    Script Date: 13/8/2018 22:43:04 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
 CREATE PROCEDURE [dbo].[pa_obtener_id_tarea]
 	@id_area_funcional INT
 	AS 
@@ -441,7 +627,11 @@ CREATE PROCEDURE [dbo].[pa_obtener_id_tarea]
 	FROM ttarea
 	WHERE id_area_funcional = @id_area_funcional
 GO
-
+/****** Object:  StoredProcedure [dbo].[pa_obtener_paso]    Script Date: 13/8/2018 22:43:04 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
 CREATE PROCEDURE [dbo].[pa_obtener_paso]
 	@id_tarea INT
 	AS 
@@ -449,7 +639,37 @@ CREATE PROCEDURE [dbo].[pa_obtener_paso]
 	FROM tpaso AS p
 	WHERE id_tarea = @id_tarea
 GO
-
+/****** Object:  StoredProcedure [dbo].[pa_obtener_proceso]    Script Date: 13/8/2018 22:43:04 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[pa_obtener_proceso]
+	@codigo_tarea VARCHAR(50)
+	AS
+	SELECT t.id_proceso
+	FROM ttarea 
+	AS t
+	WHERE t.codigo = @codigo_tarea
+GO
+/****** Object:  StoredProcedure [dbo].[pa_obtener_tareas_de_proceso]    Script Date: 13/8/2018 22:43:04 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[pa_obtener_tareas_de_proceso]
+	@id_proceso INT
+	AS
+	SELECT t.codigo, t.nombre, t.descripcion, t.numero_orden, t.estado 
+	FROM ttarea
+	AS t
+	WHERE @id_proceso = t.id_proceso
+GO
+/****** Object:  StoredProcedure [dbo].[pa_obtener_tareas_por_area]    Script Date: 13/8/2018 22:43:04 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
 CREATE PROCEDURE [dbo].[pa_obtener_tareas_por_area]
 	@id_area_funciona INT
 	AS
@@ -458,7 +678,11 @@ CREATE PROCEDURE [dbo].[pa_obtener_tareas_por_area]
 	AS t
 	WHERE t.id_area_funcional = @id_area_funciona
 GO
-
+/****** Object:  StoredProcedure [dbo].[pa_registrar_departamento]    Script Date: 13/8/2018 22:43:04 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
 CREATE PROCEDURE [dbo].[pa_registrar_departamento]
 	@nombre VARCHAR(50),
 	@codigo VARCHAR(50),
@@ -467,7 +691,11 @@ CREATE PROCEDURE [dbo].[pa_registrar_departamento]
 		INSERT INTO tarea_funcional (nombre, codigo, descripcion,estado)
 		VALUES (@nombre, @codigo, @descripcion,'Activo')
 GO
-
+/****** Object:  StoredProcedure [dbo].[pa_registrar_empleado]    Script Date: 13/8/2018 22:43:04 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
 CREATE PROCEDURE [dbo].[pa_registrar_empleado]
 	@cedula VARCHAR(20),
 	@nom1 VARCHAR(50),
@@ -490,7 +718,11 @@ CREATE PROCEDURE [dbo].[pa_registrar_empleado]
 													  correo, usuario, clave, rol, id_area_funcional)
 		VALUES (@cedula, @nom1, @nom2, @ape1, @ape2, @correo, @nomU, @clave, @rol, @id_area)
 GO
-
+/****** Object:  StoredProcedure [dbo].[pa_registrar_estado_tarea]    Script Date: 13/8/2018 22:43:04 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
 CREATE PROCEDURE [dbo].[pa_registrar_estado_tarea]
 	@codigo VARCHAR(50),
 	@estado VARCHAR(15)
@@ -499,21 +731,11 @@ CREATE PROCEDURE [dbo].[pa_registrar_estado_tarea]
 	SET estado = @estado
 	WHERE codigo = @codigo
 GO
-
-CREATE procedure [dbo].[pa_registrar_firma]
-@cedula varchar(50),
-@firma varchar(300),
-@key varchar  (50)
-as
-declare @id int 
-select @id=id
-from templeado
-where cedula=@cedula
-
-insert into tfirma(idEmpleado,firma,llave,nombre)
-values(@id,@firma,@key,@cedula)
+/****** Object:  StoredProcedure [dbo].[pa_registrar_paso]    Script Date: 13/8/2018 22:43:04 ******/
+SET ANSI_NULLS ON
 GO
-
+SET QUOTED_IDENTIFIER ON
+GO
 CREATE PROCEDURE [dbo].[pa_registrar_paso]
 	 @codigo VARCHAR(50),
 	@nombre VARCHAR(50),
@@ -530,18 +752,24 @@ CREATE PROCEDURE [dbo].[pa_registrar_paso]
 		INSERT INTO tpaso (codigo, nombre, descripcion, id_tarea, numero_orden)
 		VALUES (@codigo, @nombre, @descripcion, @id_tarea, @numero_orden)
 GO
-
+/****** Object:  StoredProcedure [dbo].[pa_registrar_proceso]    Script Date: 13/8/2018 22:43:04 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
 CREATE PROCEDURE [dbo].[pa_registrar_proceso]
 @codigo VARCHAR(50),
 @nombre VARCHAR(50),
-@descripcion VARCHAR(300),
-@firma varchar(100)
+@descripcion VARCHAR(300)
 AS
-
-
-INSERT INTO tproceso (codigo, nombre, descripcion,fecha_inicio,firma)
-VALUES (@codigo, @nombre, @descripcion,GETDATE(),@firma)
-
+INSERT INTO tproceso (codigo, nombre, descripcion)
+VALUES (@codigo, @nombre, @descripcion)
+GO
+/****** Object:  StoredProcedure [dbo].[pa_registrar_tarea]    Script Date: 13/8/2018 22:43:04 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
 CREATE PROCEDURE [dbo].[pa_registrar_tarea]
 	@codigo VARCHAR(50),
 	@nombre VARCHAR(50),
@@ -563,6 +791,8 @@ CREATE PROCEDURE [dbo].[pa_registrar_tarea]
 
 		INSERT INTO ttarea (codigo, nombre, descripcion, id_area_funcional, id_proceso, numero_orden)
 		VALUES (@codigo, @nombre, @descripcion, @id_area_funcional, @id_proceso, @numero_orden)
-
+GO
+USE [master]
+GO
 ALTER DATABASE [bd_sistema_patrones_v1] SET  READ_WRITE 
 GO
